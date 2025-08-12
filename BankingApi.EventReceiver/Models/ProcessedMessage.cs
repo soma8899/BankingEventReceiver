@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System;
 
-namespace BankingApi.EventReceiver
+namespace BankingApi.EventReceiver.Models
 {
+    // Tracks processed messages for idempotency.
     public class ProcessedMessage
     {
         public string MessageId { get; set; } = null!;

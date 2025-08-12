@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BankingApi.EventReceiver.Models;
+using BankingApi.EventReceiver.Models.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace BankingApi.EventReceiver
 {
@@ -10,7 +13,20 @@ namespace BankingApi.EventReceiver
 
         public DbSet<TransactionAudit> TransactionAudits { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlServer("Data Source=.\\SQLEXPRESS;Initial Catalog=BankingApiTest;Integrated Security=True;TrustServerCertificate=True;");
+        private readonly IConfiguration _configuration;
+
+        public BankingApiDbContext(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                var connStr = _configuration.GetConnectionString("DefaultConnection");
+                optionsBuilder.UseSqlServer(connStr);
+            }
+        }
     }
 }

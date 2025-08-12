@@ -1,4 +1,6 @@
-﻿namespace BankingApi.EventReceiver
+﻿using BankingApi.EventReceiver.Models;
+
+namespace BankingApi.EventReceiver
 {
     public interface IServiceBusReceiver
     {

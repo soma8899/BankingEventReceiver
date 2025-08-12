@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System;
 
-namespace BankingApi.EventReceiver
+namespace BankingApi.EventReceiver.Models
 {
+    // Represents an audit record for a transaction.
     public class TransactionAudit
     {
         public Guid Id { get; set; }
